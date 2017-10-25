@@ -169,9 +169,10 @@ int listIsOrdered (List l)
 	    return TRUE;
 	}
 
+	return FALSE;
 }
 
-int orderList(List l) {
+void orderList(List l) {
 
 	Node temp, after;
 	int temp1;
@@ -194,7 +195,7 @@ int orderList(List l) {
 	
 }
 
-nt listDeleteContains (List list, int value) {
+int listDeleteContains (List list, int value) {
     
     Node temp, before;
     
@@ -221,11 +222,11 @@ nt listDeleteContains (List list, int value) {
     return -1;
 }
 
-int listDeleteLargest (List l)
+void listDeleteLargest (List l)
 {
 	int max = listFindLargest(l);
 
-	Node temp, largest,before;
+	Node temp,before;
 	temp = l -> head;
 
 	if (temp -> value == max)
@@ -269,4 +270,138 @@ int listFindLargest (List l)
 	}
 
 	return max;
+}
+
+int listLength (List l) {
+
+	int i = 0;
+	Node temp = calloc(1,sizeof(node));
+	
+	if(l -> head == NULL) {
+	
+		return 0;
+	} else {
+		temp = l -> head;
+		while(temp != NULL) {
+			i++;
+			temp = temp -> next;
+		}
+	}
+	
+	return i;
+}
+
+int listsIdentical(List first, List second)
+{
+	Node temp1, temp2;
+
+	temp1 = first -> head;
+	temp2 = second -> head;
+
+	int len1, len2;
+
+	len1 = listLength(first);
+	len2 = listLength(second);
+
+	if (len1 != len2)
+	{
+		return FALSE;
+	} else {
+
+		while (temp1 != NULL)
+		{
+			if (temp1 -> value != temp2 -> value)
+			{
+				return FALSE;
+			}
+
+			temp1 = temp1 -> next;
+			temp2 = temp2 -> next;
+		}
+	}
+	return FALSE;
+}
+
+Node FindTheHead(Node odd) 
+{
+	Node temp = calloc(1,sizeof(node));
+	Node pBefore = calloc(1,sizeof(node));
+	int count = 1;
+
+	temp = odd;
+
+	while(temp -> value % 2 != 0 && temp != NULL)
+	{
+		pBefore = temp;
+		temp = temp -> next;
+		free(pBefore);
+		count ++;
+	}
+
+	return temp;
+}
+
+void deleteOdd (List l)
+{
+	Node temp, before;
+
+	temp = l -> head;
+	temp = FindTheHead(temp);
+	l -> head = temp;
+
+	while (temp != NULL)
+	{
+		if (temp -> value % 2 != 0)
+		{
+			before -> next = temp -> next;
+			free(temp);
+			temp = before;
+		}
+		before = temp;
+		temp = temp -> next;
+	}
+
+}
+
+void listConcatenate (List to, List from)
+{
+	Node temp1, temp2;
+
+	temp1 = to -> head;
+	temp2 = from -> head;
+
+	if (temp1 != NULL)
+	{
+		while (temp1 -> next != NULL)
+		{
+			temp1 = temp1 -> next;
+		}
+
+		temp1 -> next = temp2;
+		from -> head = NULL;
+	} else {
+
+		to -> head = temp2;
+		from -> head = NULL;
+	}
+}
+
+void orderedDelete (List l)
+{
+	Node temp, before;
+
+	temp = l -> head;
+
+	while (temp != NULL)
+	{
+		before = temp;
+		temp = temp -> next;
+
+		if (before -> value >= temp -> value)
+		{
+			before -> next = temp -> next;
+			free (temp);
+			temp = before;
+		}
+	}
 }

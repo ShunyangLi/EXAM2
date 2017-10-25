@@ -56,7 +56,18 @@ void deleteOdd (List l);
 
 // Week 13 activities:
 int listFindLargest (List l);
-int listDeleteLargest (List l);
+void listDeleteLargest (List l);
 int listSum (List l);
+
+// int listDeleteContains (List l);
+int listsIdentical(List first, List second);
+int listDeleteOdd(List list);
+void listConcatenate (List to, List from);
+void orderedDelete (List l);
+void orderList(List l);
+Node FindTheHead(Node odd);
+int listDeleteContains (List list, int value);
+
+
 
 #endif // !defined(LIST_H_)
