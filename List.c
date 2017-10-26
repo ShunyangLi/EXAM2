@@ -324,18 +324,20 @@ int listsIdentical(List first, List second)
 
 Node FindTheHead(Node odd) 
 {
-	Node temp = calloc(1,sizeof(node));
-	Node pBefore = calloc(1,sizeof(node));
-	int count = 1;
+	Node temp, pBefore;
 
 	temp = odd;
 
-	while(temp -> value % 2 != 0 && temp != NULL)
+	while(temp -> value % 2 != 0 && temp -> next != NULL)
 	{
 		pBefore = temp;
 		temp = temp -> next;
 		free(pBefore);
-		count ++;
+	}
+
+	if (temp -> next == NULL && temp -> value % 2 != 0)
+	{
+		return NULL;
 	}
 
 	return temp;
@@ -361,6 +363,10 @@ void deleteOdd (List l)
 		temp = temp -> next;
 	}
 
+	if (l -> head == NULL)
+	{
+		printf("%p\n", l -> head);
+	}
 }
 
 void listConcatenate (List to, List from)
@@ -404,4 +410,35 @@ void orderedDelete (List l)
 			temp = before;
 		}
 	}
+}
+
+Node newNode (int value)
+{
+    Node new = calloc(1, sizeof(struct _node));
+    new -> value = value;
+    return new;
+}
+
+void listPrint (List l) {
+
+	int i = 0;
+	Node temp = calloc(1,sizeof(node));
+	
+	if(l -> head == NULL) {
+	
+		printf("X");
+		
+	} else {
+	
+		temp = l -> head;
+		while(temp != NULL) {
+		
+			printf("%d -> ",temp -> value);
+			temp = temp -> next;
+		}
+		
+		printf("X");
+	}
+	printf("\n");
+	
 }

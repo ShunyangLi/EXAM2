@@ -24,6 +24,7 @@ typedef struct _node {
 
 // Warm up activities
 
+Node newNode (int value);
 // This function returns the length of a linked list
 int listLength (List l);
 
