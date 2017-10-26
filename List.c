@@ -443,3 +443,98 @@ void listPrint (List l) {
 	printf("\n");
 	
 }
+
+int listLength (List l)
+{
+	int i = 0;
+	Node temp;
+	
+	if(l -> head == NULL)
+	{
+		return 0;
+	} else {
+
+		temp = l -> head;
+		while(temp != NULL) {
+			i++;
+			temp = temp -> next;
+		}
+	}
+	
+	return i;
+}
+
+int listGetMiddle (List l)
+{
+	Node temp;
+	int middle;
+
+	temp = l -> head;
+	middle = listLength(l) / 2;
+
+	if (temp != NULL)
+	{
+		if (temp -> next == NULL)
+		{
+			return 0;
+		} else {
+			for (int i = 0; i < middle; ++i)
+			{
+				temp = temp -> next;
+			}
+
+			if (temp != NULL)
+			{
+				return temp -> value;
+			}
+		}
+	}
+}
+
+int listGetNth (List l, int n)
+{
+	Node temp;
+	int i = 0;
+
+	if (temp != NULL)
+	{
+		temp = l -> head;
+		while(temp != NULL)
+		{
+			if (n == i)
+			{
+				return temp -> value;
+			}
+			i ++;
+			temp = temp -> next;
+		}
+	} else {
+		return 0;
+	}
+}
+
+int listCountFavourite (List l)
+{
+	int num = 17, count = 0;
+	Node temp;
+
+	temp = l -> head;
+
+	if (temp != NULL)
+	{
+		while (temp != NULL)
+		{
+			if (temp -> value != 0)
+			{
+				if (temp -> value % num == 0)
+				{
+					count ++;
+				}
+			}
+
+			temp = temp -> next;
+		}
+	} else {
+		return count;
+	}
+}
