@@ -319,7 +319,7 @@ int listsIdentical(List first, List second)
 			temp2 = temp2 -> next;
 		}
 	}
-	return FALSE;
+	return TRUE;
 }
 
 Node FindTheHead(Node odd) 
@@ -400,15 +400,16 @@ void orderedDelete (List l)
 
 	while (temp != NULL)
 	{
-		before = temp;
-		temp = temp -> next;
-
 		if (before -> value >= temp -> value)
 		{
 			before -> next = temp -> next;
 			free (temp);
 			temp = before;
 		}
+		
+		before = temp;
+		temp = temp -> next;
+		
 	}
 }
 
